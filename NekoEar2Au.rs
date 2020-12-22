@@ -38,27 +38,15 @@ fn conversion(origin_file_path: &String) {
     let head_index = au_start_addr as usize;
     let mut target_file_path = String::from(origin_file_path);
 
-    if (buffer[head_index] == 0x49 
-    && buffer[head_index+1] == 0x44
-    && buffer[head_index+2] == 0x33)
-    || (buffer[head_index] == 0xff
-    && buffer[head_index+1] == 0xfb){
-        print!("mp3 file!  ");
+    if buffer[head_index..=head_index+2] == [0x49, 0x44, 0x33]
+    || buffer[head_index..=head_index+1] == [0xff, 0xfb] {
+        print!("\\033[1;32;5;1m[FOUND]\\e[0m mp3 file!  ");
         target_file_path += ".mp3";
     }
 
-    else if (buffer[head_index+4] == 0x66
-    && buffer[head_index+5] == 0x74
-    && buffer[head_index+6] == 0x79
-    && buffer[head_index+7] == 0x70
-    && buffer[head_index+8] == 0x4D
-    && buffer[head_index+9] == 0x34
-    && buffer[head_index+10] == 0x41)
-    || (buffer[head_index] == 0x4D
-    && buffer[head_index+1] == 0x34
-    && buffer[head_index+2] == 0x41
-    && buffer[head_index+3] == 0x21) {
-        print!("m4a file!  ");
+    else if buffer[head_index+4..=head_index+10] == [0x66, 0x74, 0x79, 0x70, 0x4D, 0x34, 0x41]
+    ||      buffer[head_index..=head_index+3]    == [0x4D, 0x34, 0x41, 0x21] {
+        print!("\\033[1;32;5;1m[FOUND]\\e[0m m4a file!  ");
         target_file_path += ".m4a";
     }
 
