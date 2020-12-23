@@ -40,13 +40,13 @@ fn conversion(origin_file_path: &String) {
 
     if buffer[head_index..=head_index+2] == [0x49, 0x44, 0x33]
     || buffer[head_index..=head_index+1] == [0xff, 0xfb] {
-        print!("\\033[1;32;5;1m[FOUND]\\e[0m mp3 file!  ");
+        print!("\x1b[1;32;3;1m[FOUND] mp3 file :");
         target_file_path += ".mp3";
     }
 
     else if buffer[head_index+4..=head_index+10] == [0x66, 0x74, 0x79, 0x70, 0x4D, 0x34, 0x41]
     ||      buffer[head_index..=head_index+3]    == [0x4D, 0x34, 0x41, 0x21] {
-        print!("\\033[1;32;5;1m[FOUND]\\e[0m m4a file!  ");
+        print!("\x1b[1;32;3;1m[FOUND] m4a file :");
         target_file_path += ".m4a";
     }
 
