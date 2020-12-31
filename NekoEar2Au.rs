@@ -9,7 +9,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     if args.len() <= 1 {
-        println!("Usage: ./NekoEar2Au source_file1 source_file2 ...");
+        println!("\x1b[31mUsage: ./NekoEar2Au <source_file1> <source_file2> ...");
         return;
     }
 
